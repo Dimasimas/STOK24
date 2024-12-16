@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIMSSTORE - Akun Mobile Legends</title>
+
+    <!-- CSS -->
+    <style>
+        /* Reset dasar untuk margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Gaya untuk body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Splash Screen */
+        #splash-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        #splash-screen h1 {
+            font-size: 3em;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff3300, 0 0 40px #ff3300;
+            animation: lightning 1s infinite alternate;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        #splash-screen p {
+            font-size: 1.2em;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        /* Animasi petir */
+        @keyframes lightning {
+            0% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff3300, 0 0 40px #ff3300;
+            }
+            25% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff0033, 0 0 40px #ff0033;
+            }
+            50% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffcc00, 0 0 40px #ffcc00;
+            }
+            75% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #00ccff, 0 0 40px #00ccff;
+            }
+            100% {
+                text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff3300, 0 0 40px #ff3300;
+            }
+        }
+
+        /* Header dengan animasi petir */
+        header {
+            text-align: center;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: #ffeb3b;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ff3300, 0 0 40px #ff3300;
+            animation: lightning 1s infinite alternate;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+        }
+
+        /* Container produk */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        /* Kartu produk */
+        .product-card {
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 5px solid #ffeb3b;
+        }
+
+        .discount {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #f44336;
+            color: white;
+            padding: 8px 15px;
+            font-size: 0.9em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card h3 {
+            font-size: 1.3em;
+            margin: 15px 0;
+            color: #ffeb3b;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .price {
+            font-size: 1.2em;
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+
+        .product-card .button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 80%;
+            transition: background-color 0.3s;
+        }
+
+        .product-card .button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <h1>Selamat datang di DIMSSTORE</h1>
+        <p>Selanjutnya akan bergeser ke halaman utama...</p>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>DIMSSTORE</h1>
+    </header>
+
+    <!-- Container untuk produk -->
+    <div class="product-container" id="product-container">
+        <!-- Kartu produk akan ditambahkan secara dinamis -->
+    </div>
+
+    <footer>
+        &copy; 2024 DIMSSTORE | Semua Hak Dilindungi
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Menunggu beberapa detik, lalu menghilangkan splash screen dan menampilkan konten utama
+        setTimeout(function() {
+            document.getElementById('splash-screen').style.display = 'none';
+        }, 3000); // Splash screen akan muncul selama 3 detik
+
+        // Data produk dalam array
+        const products = [
+            {
+                name: "Valir Legenda",
+                price: "Rp 1.549.000",
+                image: "https://via.placeholder.com/300x200",
+                discount: "Diskon 16%"
+            },
+            {
+                name: "Claude Valor",
+                price: "Rp 319.000",
+                image: "https://via.placeholder.com/300x200",
+                discount: "Diskon 20%"
+            },
+            {
+                name: "Fanny Aspire",
+                price: "Rp 1.279.000",
+                image: "https://via.placeholder.com/300x200",
+                discount: "Diskon 20%"
+            },
+            {
+                name: "Xavier JJK",
+                price: "Rp 1.199.000",
+                image: "https://via.placeholder.com/300x200",
+                discount: "Diskon 20%"
+            }
+        ];
+
+        // Ambil elemen container
+        const container = document.getElementById("product-container");
+
+        // Fungsi untuk menambahkan produk ke halaman
+        function displayProducts() {
+            products.forEach(product => {
+                const productCard = `
+                    <div class="product-card">
+                        <div class="discount">${product.discount}</div>
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <div class="price">${product.price}</div>
+                        <!-- Link ke WhatsApp -->
+                        <a href="https://wa.me/6282194559594" target="_blank">
+                            <button class="button">Beli Sekarang</button>
+                        </a>
+                    </div>
+                `;
+                container.innerHTML += productCard;
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan produk
+        displayProducts();
+    </script>
+</body>
+</html>
